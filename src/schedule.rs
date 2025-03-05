@@ -9,6 +9,21 @@ pub enum ScheduleMode {
 
 pub type Micros = u64; //RAINY Optionize somehow?
 
+//RAINY Also permit non-repeating timers?
+/**
+ * A repeating timer you check periodically to see if it's going off.
+```
+let mut ik_timer = Schedule::new(ScheduleMode::PERIOD_SKIP, clock.get_as_micros(), 1000000*10);
+ik_timer.enable(clock.get_as_micros());
+loop {
+  // ...
+  if ik_timer.check(clock.get_as_micros()) {
+    // Do stuff
+  }
+  // ...
+}
+```
+ */
 pub struct Schedule {
   pub mode: ScheduleMode,
   pub next_time: Option<Micros>,
